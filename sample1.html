@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AptiCraft - Forge Aptitude</title>
+    <!-- Load Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Configure the 'Inter' font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        :root {
+            /* SILVER LINE / GRAY BACK THEME */
+            --bg-color: #1F2937; /* Dark Slate Gray */
+            --primary-text: #F3F4F6; /* Near White */
+            --accent-color: #FFFFFF; /* Pure White / Silver Line */
+            --card-bg: rgba(31, 41, 55, 0.7); /* Translucent Dark Gray for cards */
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* --- Custom Animated Background --- */
+        .animated-bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1; /* Subtle transparency */
+            pointer-events: none;
+        }
+
+        .animated-bg {
+            /* Subtle radial glow combined with moving grid to simulate digital flow */
+            background: 
+                radial-gradient(circle at 50% 50%, var(--accent-color) 0%, transparent 10%),
+                repeating-linear-gradient(0deg, transparent, transparent 38px, var(--accent-color) 39px, var(--accent-color) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 38px, var(--accent-color) 39px, var(--accent-color) 40px);
+            background-size: 80px 80px;
+            width: 200vw;
+            height: 200vh;
+            position: absolute;
+            top: -50vh;
+            left: -50vw;
+            animation: moveGrid 30s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 800px 800px;
+            }
+        }
+        
+        /* Utility for the floating effect on the main logo */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Card styles for glass/blurred effect */
+        .glass-card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Silver border */
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Bright silver glow on hover */
+            transform: translateY(-4px);
+        }
+        
+    </style>
+</head>
+<body class="selection:bg-gray-600 selection:text-white">
+
+    <!-- 1. Animated Background Layout -->
+    <div class="animated-bg-container">
+        <div class="animated-bg"></div>
+    </div>
+
+    <div class="relative min-h-screen flex flex-col items-center p-4 sm:p-8">
+
+        <!-- Header / Logo Section -->
+        <header class="text-center py-10 w-full max-w-4xl">
+            <h1 class="text-6xl sm:text-7xl font-extrabold tracking-tighter float-animation">
+                <span class="text-[var(--primary-text)]">Apti</span><span class="text-[var(--accent-color)]">Craft</span>
+            </h1>
+            <p class="mt-4 text-xl sm:text-2xl text-gray-400 font-light max-w-xl mx-auto">
+                Forge Aptitude. Craft Understanding.
+            </p>
+        </header>
+
+        <!-- Main Content Grid -->
+        <main class="w-full max-w-6xl flex-grow pt-4 pb-12">
+            
+            <h2 class="text-2xl font-semibold mb-6 text-gray-300 border-b border-gray-600 pb-2">
+                Learning Domains
+            </h2>
+
+            <!-- Grid for the main focus areas -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Domain Card 1: Cognitive Engines -->
+                <div class="glass-card p-6 rounded-xl shadow-lg transform hover:scale-[1.02]">
+                    <div class="text-[var(--accent-color)] text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold mb-2">Cognitive Engines</h3>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Harness the power of digital intelligence.
+                    </p>
+                    <ul class="space-y-1 text-sm text-gray-300">
+                        <li class="hover:text-[var(--accent-color)] transition duration-150 cursor-pointer">Informational Synthesis</li>
+                        <li class="hover:text-[var(--accent-color)] transition duration-150 cursor-pointer">Research Methodologies</li>
+                        <li class="hover:text-[var(--accent-color)] transition duration-150 cursor-pointer">AI & LLM Training</li>
+                    </ul>
+                </div>
+
+                <!-- Domain Card 2: Dimensional Worlds -->
+                <div class="glass-card p-6 rounded-xl shadow-lg transform hover:scale-[1.02]">
+                    <div class="text-[var(--accent-color)] text-4xl mb-4">🪐</div>
+                    <h3 class="text-xl font-bold mb-2">Dimensional Worlds</h3>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Build and interact with realistic digital environments.
+                    </p>
+                    <ul class="space-y-1 text-sm text-gray-300">
+                        <li class="hover:text-[var(--accent-color)] transition duration-150 cursor-pointer">3D Visualization (three.js)</li>
+                        <li class="hover:text-[var(--accent-color)] transition duration-150 cursor-pointer">Physics & Simulation (cannon.js)</li>
+                        <li class="hover:text-[var(--accent-color)] transition duration-150 cursor-pointer">Virtual Prototyping</li>
+                    </ul>
+                </div>
+                
+                <!-- Domain Card 3: Physical Systems -->
+                <div class="glass-card p-6 rounded-xl shadow-lg transform hover:scale-[1.02]">
+                    <div class="text-[var(--accent-color)] text-4xl mb-4">⚙️</div>
+                    <h3 class="text-xl font-bold mb-2">Physical Systems</h3>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Engineer and understand tangible mechanics and logic.
+                    </p>
+                    <ul class="space-y-1 text-sm text-gray-300">
+                        <li class="hover:text-[var(--accent-color)] transition duration-150 cursor-pointer">Robotics Principles</li>
+                        <li class="hover:text-[var(--accent-color)] transition duration-150 cursor-pointer">Circuit Engine Logic</li>
+                        <li class="hover:text-[var(--accent-color)] transition duration-150 cursor-pointer">Systems Integration</li>
+                    </ul>
+                </div>
+
+                <!-- Domain Card 4: Biological Fabric -->
+                <div class="glass-card p-6 rounded-xl shadow-lg transform hover:scale-[1.02]">
+                    <div class="text-[var(--accent-color)] text-4xl mb-4">🧬</div>
+                    <h3 class="text-xl font-bold mb-2">Biological Fabric</h3>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Explore the intricate systems of human and life sciences.
+                    </p>
+                    <ul class="space-y-1 text-sm text-gray-300">
+                        <li class="hover:text-[var(--accent-color)] transition duration-150 cursor-pointer">Human Anatomy & Physiology</li>
+                        <li class="hover:text-[var(--accent-color)] transition duration-150 cursor-pointer">Ecosystems & Life Cycles</li>
+                        <li class="hover:text-[var(--accent-color)] transition duration-150 cursor-pointer">Bio-simulation</li>
+                    </ul>
+                </div>
+
+            </div>
+            
+            <!-- Call to Action Footer -->
+            <div class="mt-12 text-center p-6 rounded-lg bg-gray-800/50 border border-gray-600">
+                <p class="text-gray-400 text-lg">
+                    Ready to turn hardship into insight?
+                </p>
+                <button class="mt-4 px-8 py-3 bg-[var(--accent-color)] text-gray-900 font-bold rounded-full text-lg shadow-lg hover:shadow-[0_0_25px_rgba(255,255,255,0.7)] transition duration-300">
+                    Start Your First Craft
+                </button>
+            </div>
+
+        </main>
+        
+    </div>
+
+</body>
+</html>
