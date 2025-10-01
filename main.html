@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apps Hub</title>
+  <meta name="color-scheme" content="dark light">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca'
+            }
+          },
+          boxShadow: {
+            soft: '0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.10)'
+          }
+        }
+      },
+      darkMode: 'media'
+    }
+  </script>
+  <style>
+    :root { color-scheme: dark light; }
+    .bg-grid {
+      background-image:
+        radial-gradient(ellipse 60% 50% at 50% -10%, rgba(99,102,241,.20), rgba(99,102,241,0) 70%),
+        linear-gradient(transparent 0, transparent 31px, rgba(255,255,255,.06) 31px, rgba(255,255,255,.06) 32px),
+        linear-gradient(90deg, transparent 0, transparent 31px, rgba(255,255,255,.06) 31px, rgba(255,255,255,.06) 32px);
+      background-size: auto, 32px 32px, 32px 32px;
+      background-position: center top, center, center;
+    }
+    .line-clamp-1{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+    .line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  </style>
+</head>
+<body class="min-h-full bg-neutral-950 text-neutral-100">
+  <!-- Hero -->
+  <header class="bg-grid">
+    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-20">
+      <div class="flex flex-col items-center text-center gap-6">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80">
+          <svg width="14" height="14" viewBox="0 0 24 24" class="opacity-80"><path fill="currentColor" d="M20 7h-2V5a1 1 0 0 0-1-1h-2V2h-2v2h-2V2H7v2H5a1 1 0 0 0-1 1v2H2v2h2v2H2v2h2v2H2v2h2v2a1 1 0 0 0 1 1h2v2h2v-2h2v2h2v-2h2a1 1 0 0 0 1-1v-2h2v-2h-2v-2h2v-2h-2V9h2zM7 7h10v10H7z"/></svg>
+          Apps Hub
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">
+          Your smart, simple home for all apps
+        </h1>
+        <p class="max-w-2xl text-white/70">
+          Jump into your tools across informational, research, cooking, agriculture, HR, simulation, LLMs, data modeling, circuit design, robotics, 3D/geo, health, weather, and more.
+        </p>
+
+        <!-- Search -->
+        <div class="relative w-full max-w-2xl">
+          <input id="searchInput" type="search" placeholder="Search apps or categories..."
+                 class="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-12 pr-4 text-sm shadow-soft placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-brand-600"/>
+          <svg class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-white/50" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="m20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8a7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42-1.42M5 11a6 6 0 1 1 6 6a6 6 0 0 1-6-6"/></svg>
+        </div>
+
+        <!-- Quick category nav -->
+        <nav id="categoryNav" class="flex w-full max-w-5xl flex-wrap items-center justify-center gap-2 pt-2"></nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sections -->
+  <main class="mx-auto max-w-7xl px-6 pb-24">
+    <section id="appsContainer" class="space-y-12"></section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-6 py-10 text-sm text-white/50">
+      <div class="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
+        <p>Made for speed and clarity. TailwindCSS.</p>
+        <a href="#dataBlock" class="text-brand-400 hover:text-brand-300">Edit links data</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Data + Renderer -->
+  <script id="dataBlock">
+    const appCatalog = [
+      {
+        id: 'informational',
+        name: 'Informational',
+        emoji: '📚',
+        color: 'from-emerald-400/20 to-emerald-400/10',
+        apps: [
+          { name: 'Company Wiki', url: '#', description: 'Internal knowledge base', tags: ['docs','handbook'] },
+          { name: 'Public Site', url: '#', description: 'Marketing & news', tags: ['site'] },
+        ]
+      },
+      {
+        id: 'research',
+        name: 'Research',
+        emoji: '🔬',
+        color: 'from-sky-400/20 to-sky-400/10',
+        apps: [
+          { name: 'Papers Search', url: '#', description: 'Semantic search on papers', tags: ['papers','semantic'] },
+          { name: 'Notes Graph', url: '#', description: 'Zettelkasten knowledge graph', tags: ['notes','graph'] },
+        ]
+      },
+      {
+        id: 'cooking',
+        name: 'Cooking',
+        emoji: '🍳',
+        color: 'from-orange-400/20 to-orange-400/10',
+        apps: [
+          { name: 'Recipe Builder', url: '#', description: 'LLM meal planner', tags: ['planner','llm'] },
+        ]
+      },
+      {
+        id: 'agriculture',
+        name: 'Agriculture',
+        emoji: '🌾',
+        color: 'from-lime-400/20 to-lime-400/10',
+        apps: [
+          { name: 'Soil Monitor', url: '#', description: 'Sensors & insights', tags: ['iot','sensors'] },
+          { name: 'Yield Forecast', url: '#', description: 'Time‑series modeling', tags: ['forecast'] },
+        ]
+      },
+      {
+        id: 'hr',
+        name: 'Human Resources',
+        emoji: '🧑‍💼',
+        color: 'from-fuchsia-400/20 to-fuchsia-400/10',
+        apps: [
+          { name: 'ATS', url: '#', description: 'Applicant tracking', tags: ['recruiting'] },
+          { name: 'People Ops', url: '#', description: 'Onboarding & docs', tags: ['onboarding'] },
+        ]
+      },
+      {
+        id: 'simulation',
+        name: 'Simulation',
+        emoji: '🧪',
+        color: 'from-yellow-400/20 to-yellow-400/10',
+        apps: [
+          { name: 'Physics Sandbox', url: '#', description: 'Experiments & models', tags: ['sim'] },
+        ]
+      },
+      {
+        id: 'llm',
+        name: 'LLM',
+        emoji: '🧠',
+        color: 'from-brand-500/20 to-brand-500/10',
+        apps: [
+          { name: 'Chat Studio', url: '#', description: 'Multi‑model playground', tags: ['gpt','claude','gemini'] },
+          { name: 'Eval Bench', url: '#', description: 'Prompt & eval suites', tags: ['evals'] },
+        ]
+      },
+      {
+        id: 'data-modeling',
+        name: 'Data Modeling',
+        emoji: '🧮',
+        color: 'from-cyan-400/20 to-cyan-400/10',
+        apps: [
+          { name: 'DBT Docs', url: '#', description: 'Lineage & docs', tags: ['dbt'] },
+          { name: 'Warehouse', url: '#', description: 'BI & queries', tags: ['bi'] },
+        ]
+      },
+      {
+        id: 'circuit-design',
+        name: 'Circuit Design',
+        emoji: '💡',
+        color: 'from-amber-400/20 to-amber-400/10',
+        apps: [
+          { name: 'PCB Studio', url: '#', description: 'Schematic & layout', tags: ['pcb'] },
+        ]
+      },
+      {
+        id: 'robotics',
+        name: 'Robotics Engine',
+        emoji: '🤖',
+        color: 'from-rose-400/20 to-rose-400/10',
+        apps: [
+          { name: 'Control Center', url: '#', description: 'Fleet dashboards', tags: ['ros','control'] },
+          { name: 'Planner', url: '#', description: 'Path & motion planning', tags: ['planning'] },
+        ]
+      },
+      {
+        id: 'graphics',
+        name: '3D / Geo',
+        emoji: '🗺️',
+        color: 'from-purple-400/20 to-purple-400/10',
+        apps: [
+          { name: 'three.js Lab', url: '#', description: 'WebGL scenes', tags: ['three'] },
+          { name: 'cannon.js Physics', url: '#', description: 'Rigid‑body physics', tags: ['cannon'] },
+          { name: 'Cesium Viewer', url: '#', description: '3D globe', tags: ['cesium'] },
+        ]
+      },
+      {
+        id: 'health',
+        name: 'Health',
+        emoji: '🩺',
+        color: 'from-teal-400/20 to-teal-400/10',
+        apps: [
+          { name: 'Wellness', url: '#', description: 'Habits & metrics', tags: ['wellness'] },
+        ]
+      },
+      {
+        id: 'weather',
+        name: 'Weather',
+        emoji: '🌦️',
+        color: 'from-blue-400/20 to-blue-400/10',
+        apps: [
+          { name: 'Forecast', url: '#', description: 'Local & global', tags: ['forecast'] },
+        ]
+      }
+    ];
+
+    const categoryNav = document.getElementById('categoryNav');
+    const appsContainer = document.getElementById('appsContainer');
+    const searchInput = document.getElementById('searchInput');
+
+    function createCategoryPill(category) {
+      const a = document.createElement('a');
+      a.href = `#${category.id}`;
+      a.className = 'group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-brand-600';
+      a.innerHTML = `<span>${category.emoji}</span><span>${category.name}</span>`;
+      return a;
+    }
+
+    function createAppCard(app) {
+      const a = document.createElement('a');
+      a.href = app.url || '#';
+      a.target = app.url?.startsWith('#') ? '_self' : '_blank';
+      a.rel = 'noopener noreferrer';
+      a.className = 'group block rounded-2xl border border-white/10 bg-white/5 p-4 shadow-soft transition hover:-translate-y-0.5 hover:bg-white/10';
+      a.innerHTML = `
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h3 class="text-sm font-semibold leading-6 group-hover:text-white">${app.name}</h3>
+            <p class="mt-1 text-xs text-white/60 line-clamp-2">${app.description || ''}</p>
+          </div>
+          <svg class="mt-1 h-5 w-5 text-white/40 group-hover:text-white/70" viewBox="0 0 24 24"><path fill="currentColor" d="M14 3h7v7h-2V6.41l-9.29 9.3l-1.42-1.42l9.3-9.29H14zM5 5h5v2H7v10h10v-3h2v5H5z"/></svg>
+        </div>
+        ${Array.isArray(app.tags) && app.tags.length ? `
+          <div class="mt-3 flex flex-wrap gap-1.5">
+            ${app.tags.map(t => `<span class="rounded-full bg-white/5 px-2 py-0.5 text-[10px] text-white/60 border border-white/10">${t}</span>`).join('')}
+          </div>` : ''}
+      `;
+      return a;
+    }
+
+    function renderCatalog(filterText = '') {
+      // nav
+      categoryNav.innerHTML = '';
+      appCatalog.forEach(cat => categoryNav.appendChild(createCategoryPill(cat)));
+
+      // sections
+      appsContainer.innerHTML = '';
+      const q = filterText.trim().toLowerCase();
+      appCatalog.forEach(category => {
+        // filter apps
+        const filteredApps = category.apps.filter(app => {
+          if (!q) return true;
+          const hay = [app.name, app.description, ...(app.tags || []), category.name].join(' ').toLowerCase();
+          return hay.includes(q);
+        });
+        if (!filteredApps.length) return;
+
+        const section = document.createElement('section');
+        section.id = category.id;
+        section.innerHTML = `
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-semibold">
+              <span class="mr-2">${category.emoji}</span>${category.name}
+            </h2>
+            <a href="#top" class="text-xs text-white/50 hover:text-white/80">Back to top</a>
+          </div>
+          <div class="mt-4 rounded-2xl bg-gradient-to-br ${category.color} p-px">
+            <div class="rounded-2xl bg-neutral-950/60 p-4 sm:p-5">
+              <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              </div>
+            </div>
+          </div>
+        `;
+        const grid = section.querySelector('.grid');
+        filteredApps.forEach(app => grid.appendChild(createAppCard(app)));
+        appsContainer.appendChild(section);
+      });
+    }
+
+    renderCatalog();
+
+    searchInput.addEventListener('input', (e) => {
+      renderCatalog(e.target.value);
+    });
+  </script>
+</body>
+</html>
